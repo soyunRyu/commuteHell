@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-commutehell = "commutehell:main"
+commutehell = "commutehell.server:main"
 
 [build-system]
 requires = ["uv_build>=0.12.2,<0.13.0"]
