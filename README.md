@@ -4,13 +4,15 @@
 
 ## 주요 기능
 
+- 항목별 점수를 합산한 퇴근 난이도 제공 
 - TMAP 대중교통 경로 조회
 - 총 이동시간 및 환승 횟수 조회
 - 도보시간 및 도보거리 조회
 - 기상청 초단기예보 조회
 - 기온·습도·강수 기반 불쾌지수 계산
 - 주말 및 법정공휴일 확인
-- 항목별 점수를 합산한 퇴근 난이도 제공
+
+
 
 ## 퇴근 난이도 산정 기준
 
@@ -59,7 +61,7 @@ commuteHell/
 ```text
 Claude CLI
 └─ MCP tools/call 요청
-   └─ server.py
+   └─ commute.py
       └─ get_commute_difficulty() [MCP Tool]
          ├─ transit.py
          │  └─ get_transit_route()
@@ -99,7 +101,7 @@ Claude CLI
 
 | 파일 | 역할 |
 |---|---|
-| `server.py` | MCP 서버 실행 및 공개 Tool 관리 |
+| `commute.py` | MCP 서버 실행 및 공개 Tool 관리 |
 | `config.py` | 환경변수, API 키, API URL 관리 |
 | `transit.py` | TMAP 대중교통 경로 조회 |
 | `weather.py` | 기상청 예보 조회 및 불쾌지수 계산 |
