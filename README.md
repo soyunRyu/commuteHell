@@ -35,6 +35,137 @@
 + 금요일·공휴일 보정 5점
 ```
 
+## 사용 API
+
+### TMAP 대중교통 API
+
+출발지와 도착지 사이의 대중교통 경로를 조회합니다.
+
+| 항목 | 내용 |
+|---|---|
+| 제공 기관 | SK Open API |
+| API | TMAP 대중교통 경로 요약정보 |
+| 요청 방식 | `POST` |
+| 인증 방식 | `appKey` 요청 헤더 |
+| 사용 파일 | `transit.py` |
+
+```text
+https://apis.openapi.sk.com/transit/routes/sub/
+```
+
+주요 사용 데이터:
+
+- 총 이동시간
+- 환승 횟수
+- 도보시간
+- 도보거리
+- 대중교통 요금
+
+### 기상청 초단기예보 API
+
+도착지 좌표를 기준으로 현재와 가까운 시간의 날씨를 조회합니다.
+
+| 항목 | 내용 |
+|---|---|
+| 제공 기관 | 기상청·공공데이터포털 |
+| API | 초단기예보조회 |
+| 요청 방식 | `GET` |
+| 응답 형식 | XML |
+| 사용 파일 | `weather.py` |
+
+```text
+https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst
+```
+
+주요 사용 데이터:
+
+- 기온
+- 습도
+- 하늘 상태
+- 강수 형태 및 강수량
+- 풍속
+- 낙뢰 정보
+
+위도·경도는 기상청 API에서 사용하는 격자 좌표로 변환하여 요청합니다.
+
+### 한국천문연구원 특일정보 API
+
+오늘이 법정공휴일인지 확인합니다.
+
+| 항목 | 내용 |
+|---|---|
+| 제공 기관 | 한국천문연구원·공공데이터포털 |
+| API | 국경일·공휴일 정보 |
+| 요청 방식 | `GET` |
+| 사용 파일 | `holiday.py` |
+
+```text
+https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
+```
+
+토요일과 일요일은 API를 호출하지 않고 Python 날짜 정보로 판단합니다.
+
+## 기술 스택
+
+| 구분 | 기술 |
+|---|---|
+| 언어 | Python |
+| 패키지 관리 | uv |
+| MCP SDK | `mcp` |
+| MCP 전송 방식 | stdio |
+| HTTP 통신 | requests |
+| XML 변환 | xmltodict |
+| 환경변수 관리 | python-dotenv |
+| 외부 연결 | Smithery Uplink |
+| 버전 관리 | Git, GitHub |
+
+## 주요 Python 패키지
+
+| 패키지 | 용도 |
+|---|---|
+| `mcp[cli]` | MCP 서버와 Tool 구현 |
+| `requests` | TMAP·기상청·공휴일 API 호출 |
+| `xmltodict` | 기상청 XML 응답을 Python 딕셔너리로 변환 |
+| `python-dotenv` | `.env` 파일에서 API 키 로딩 |
+| `uv` | 가상환경과 의존성 관리 |
+
+## 시스템 구성
+
+```text
+Claude CLI
+    │
+    │ MCP tools/call
+    ▼
+CommuteHell MCP Server
+    ├─ TMAP 대중교통 API
+    ├─ 기상청 초단기예보 API
+    ├─ 한국천문연구원 공휴일 API
+    └─ 퇴근 난이도 점수 계산
+```
+
+## 실행 환경
+
+- Python 3.14
+- MCP Python SDK 2.x
+- Windows
+- stdio 기반 MCP 서버
+- Claude Desktop 또는 Claude CLI
+- Smithery CLI/Uplink 지원
+
+## 환경변수
+
+| 변수 | 용도 |
+|---|---|
+| `TMAP_API_KEY` | TMAP 대중교통 API 인증 |
+| `OPENDATA_API_KEY` | 기상청 및 공휴일 API 인증 |
+
+```env
+TMAP_API_KEY=발급받은_TMAP_키
+OPENDATA_API_KEY=발급받은_공공데이터포털_키
+```
+
+API 키가 들어 있는 `.env` 파일은 Git에 포함하지 않습니다.
+
 ## 프로젝트 구조
 
 ```text
