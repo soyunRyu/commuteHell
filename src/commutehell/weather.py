@@ -1,4 +1,4 @@
-from config import OPENDATA_API_KEY, WEATHER_URL
+from .config import OPENDATA_API_KEY, WEATHER_URL
 import math
 from datetime import datetime, timedelta
 import requests

@@ -8,11 +8,12 @@ dependencies = [
     "httpx>=0.28.1",
     "mcp[cli]>=2.0.0",
     "python-dotenv>=1.2.2",
+    "requests>=2.34.2",
     "xmltodict>=1.0.4",
 ]
 
 [project.scripts]
-commutehell = "commutehell.server:main"
+commutehell = "commutehell.commute:main"
 
 [build-system]
 requires = ["uv_build>=0.12.2,<0.13.0"]

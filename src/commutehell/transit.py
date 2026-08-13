@@ -1,6 +1,6 @@
 from datetime import datetime
 import requests
-from config import COMMUTE_URL, TMAP_API_KEY
+from .config import COMMUTE_URL, TMAP_API_KEY
 
 def get_transit_route( # TMAP 대중교통 API를 호출하여 최적 경로 정보를 조회
     start_lat: float,

@@ -1,15 +1,15 @@
 from mcp.server import MCPServer
 
-from holiday import get_day_off_info
-from scoring import (
+from .holiday import get_day_off_info
+from .scoring import (
     calculate_commute_difficulty,
     calculate_transfer_fatigue,
     calculate_travel_time_score,
     calculate_walking_burden,
     calculate_weather_discomfort,
 )
-from transit import get_transit_route
-from weather import fetch_weather
+from .transit import get_transit_route
+from .weather import fetch_weather
 
 mcp = MCPServer("commuteHell")
 
@@ -61,6 +61,8 @@ def get_commute_difficulty(
         "difficulty": difficulty,
     }
 
+def main():
+    mcp.run()
 
 if __name__ == "__main__":
-    mcp.run()
+    main()
