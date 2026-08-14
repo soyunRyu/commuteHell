@@ -285,6 +285,7 @@ uv run commutehell
 
 ```text
 https://commutehell-production.up.railway.app/mcp
+```
 
 예를 들어 Gemini CLI에 다음과 같이 등록합니다.
 
