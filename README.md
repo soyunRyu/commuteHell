@@ -279,6 +279,19 @@ uv run commutehell
 .venv/Scripts/commutehell.exe
 ```
 
+## Remote MCP Server
+
+배포된 Streamable HTTP MCP 서버를 사용할 수 있습니다.
+
+```text
+https://commutehell-production.up.railway.app/mcp
+
+예를 들어 Gemini CLI에 다음과 같이 등록합니다.
+
+```
+gemini mcp add --transport http commuteHell https://commutehell-production.up.railway.app/mcp
+```
+
 ## MCP Tool
 
 ### `get_commute_difficulty`
@@ -306,14 +319,6 @@ uv run commutehell
 ```
 
 사용자가 지역명이나 주소를 입력하면 MCP 클라이언트가 먼저 좌표를 찾은 뒤 이 Tool을 호출합니다.
-
-## Smithery Uplink 연결
-
-```cmd
-smithery mcp add --id commutehell --force -- "D:\my_mcp\commuteHell\.venv\Scripts\commutehell.exe"
-```
-
-Uplink가 실행되는 동안 로컬 MCP 서버를 Smithery를 통해 사용할 수 있습니다.
 
 ## 참고 자료
 
