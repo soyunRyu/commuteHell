@@ -1,6 +1,6 @@
 from datetime import datetime
 import requests
-from commutehell.config import HOLIDAY_URL, OPENDATA_API_KEY
+from .config import HOLIDAY_URL, OPENDATA_API_KEY
 
 def get_day_off_info(target_date=None) -> dict: #오늘이 주말인지 법정공휴일인지 확인
     """주말 또는 법정공휴일인지 확인합니다."""
