@@ -112,7 +112,7 @@ https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
 | 언어 | Python |
 | 패키지 관리 | uv |
 | MCP SDK | `mcp` |
-| MCP 전송 방식 | stdio |
+| MCP 전송 방식 | 로컬 stdio, 배포 Streamable HTTP |
 | HTTP 통신 | requests |
 | XML 변환 | xmltodict |
 | 환경변수 관리 | python-dotenv |
@@ -132,25 +132,26 @@ https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
 ## 시스템 구성
 
 ```text
-Claude CLI
-    │
-    │ MCP tools/call
-    ▼
-CommuteHell MCP Server
-    ├─ TMAP 대중교통 API
-    ├─ 기상청 초단기예보 API
-    ├─ 한국천문연구원 공휴일 API
-    └─ 퇴근 난이도 점수 계산
+로컬 MCP 클라이언트 ── stdio ───────────────┐
+                                             ▼
+원격 MCP 클라이언트 ── Streamable HTTP ── Railway
+                                             │
+                                             ▼
+                                  CommuteHell MCP Server
+                                      ├─ TMAP 대중교통 API
+                                      ├─ 기상청 초단기예보 API
+                                      ├─ 한국천문연구원 공휴일 API
+                                      └─ 퇴근 난이도 점수 계산
 ```
 
 ## 실행 환경
 
 - Python 3.14
 - MCP Python SDK 2.x
-- Windows
-- stdio 기반 MCP 서버
-- Claude Desktop 또는 Claude CLI
-- Smithery CLI/Uplink 지원
+- 로컬 실행: stdio
+- Docker/Railway 배포: Streamable HTTP
+- 원격 MCP 엔드포인트: /mcp
+- Railway 배포 URL: https://commutehell-production.up.railway.app/mcp
 
 ## 환경변수
 
@@ -173,7 +174,7 @@ commuteHell/
 ├─ src/
 │  └─ commutehell/
 │     ├─ __init__.py
-│     ├─ server.py
+│     ├─ commute.py
 │     ├─ config.py
 │     ├─ transit.py
 │     ├─ weather.py
