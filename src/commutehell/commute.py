@@ -1,3 +1,4 @@
+import os
 from mcp.server import MCPServer
 
 from .holiday import get_day_off_info
@@ -47,7 +48,7 @@ def get_commute_difficulty(
     }
 
     difficulty = calculate_commute_difficulty(
-        travel_time_score=scores["travel_time"],
+        travel_time_score=scores["travel_time"],    
         transfer_score=scores["transfer"],
         walking_score=scores["walking"],
         weather_score=scores["weather"],
@@ -62,7 +63,17 @@ def get_commute_difficulty(
     }
 
 def main():
-    mcp.run()
+    if os.getenv("MCP_TRANSPORT") == "streamable-http":
+        mcp.run(
+            transport="streamable-http",
+            host="0.0.0.0",
+            port=int(os.getenv("PORT", "8000")),
+        )
+    else:
+        mcp.run()
+    
+    # STDIO 트랜스포트로 실행 (로컬 테스트용)
+    #mcp.run(transport="stdio")
 
 if __name__ == "__main__":
     main()

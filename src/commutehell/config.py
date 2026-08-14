@@ -1,9 +1,8 @@
 import os
-import urllib.parse
 
 from dotenv import load_dotenv
 
-load_dotenv( r"D:\my_mcp\commuteHell\.env", override=True,)
+load_dotenv()
 
 OPENDATA_API_KEY = os.environ["OPENDATA_API_KEY"].strip()
 TMAP_API_KEY = os.environ["TMAP_API_KEY"].strip()
