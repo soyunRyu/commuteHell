@@ -240,7 +240,6 @@ Claude CLI
 | `holiday.py` | 주말 및 법정공휴일 확인 |
 | `scoring.py` | 항목별 점수 및 최종 퇴근 난이도 계산 |
 
-## MCP 서버 실제 사용
 
 ## Remote MCP Server
 
