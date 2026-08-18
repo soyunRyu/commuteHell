@@ -116,7 +116,6 @@ https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
 | HTTP 통신 | requests |
 | XML 변환 | xmltodict |
 | 환경변수 관리 | python-dotenv |
-| 외부 연결 | Smithery Uplink |
 | 버전 관리 | Git, GitHub |
 
 ## 주요 Python 패키지
@@ -151,6 +150,8 @@ https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
 - 로컬 실행: stdio
 - Docker/Railway 배포: Streamable HTTP
 - 원격 MCP 엔드포인트: /mcp
+- 기본 포트: `8000`
+- Railway 배포 시: Railway가 제공하는 `PORT` 환경변수 사용
 - Railway 배포 URL: https://commutehell-production.up.railway.app/mcp
 
 ## 환경변수
