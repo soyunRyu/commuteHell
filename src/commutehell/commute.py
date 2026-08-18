@@ -71,9 +71,6 @@ def main():
         )
     else:
         mcp.run()
-    
-    # STDIO 트랜스포트로 실행 (로컬 테스트용)
-    #mcp.run(transport="stdio")
 
 if __name__ == "__main__":
     main()
