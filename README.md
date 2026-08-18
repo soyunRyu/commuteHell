@@ -116,7 +116,6 @@ https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
 | HTTP 통신 | requests |
 | XML 변환 | xmltodict |
 | 환경변수 관리 | python-dotenv |
-| 외부 연결 | Smithery Uplink |
 | 버전 관리 | Git, GitHub |
 
 ## 주요 Python 패키지
@@ -151,6 +150,8 @@ https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
 - 로컬 실행: stdio
 - Docker/Railway 배포: Streamable HTTP
 - 원격 MCP 엔드포인트: /mcp
+- 기본 포트: `8000`
+- Railway 배포 시: Railway가 제공하는 `PORT` 환경변수 사용
 - Railway 배포 URL: https://commutehell-production.up.railway.app/mcp
 
 ## 환경변수
@@ -240,45 +241,6 @@ Claude CLI
 | `holiday.py` | 주말 및 법정공휴일 확인 |
 | `scoring.py` | 항목별 점수 및 최종 퇴근 난이도 계산 |
 
-## 환경 설정
-
-### 1. 저장소 내려받기
-
-```bash
-git clone https://github.com/soyunRyu/commuteHell.git
-cd commuteHell
-```
-
-### 2. 의존성 설치
-
-이 프로젝트는 `uv`를 사용합니다.
-
-```bash
-uv sync
-```
-
-### 3. 환경변수 설정
-
-프로젝트 최상위에 `.env` 파일을 만들고 API 키를 입력합니다.
-
-```env
-OPENDATA_API_KEY=공공데이터포털_API_키
-TMAP_API_KEY=TMAP_API_키
-```
-
-> `.env`에는 실제 API 키가 포함되므로 GitHub에 커밋하지 마세요.
-
-## 실행
-
-```bash
-uv run commutehell
-```
-
-또는 가상환경 실행 파일을 직접 사용할 수 있습니다.
-
-```bash
-.venv/Scripts/commutehell.exe
-```
 
 ## Remote MCP Server
 
